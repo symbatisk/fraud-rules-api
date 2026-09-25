@@ -8,8 +8,7 @@ fake = Faker()
 
 API_URL = "http://localhost:8080/api/transactions"
 
-# ID пользователей, которых мы создали в БД вручную
-USER_IDS = [1, 2, 3, 4, 5, 6]  # подставь реальные id из SELECT выше
+USER_IDS = [1, 2, 3, 4, 5, 6]
 
 NORMAL_COUNTRIES = ["US", "GB", "DE", "FR", "CA", "MX"]
 BLOCKED_COUNTRIES = ["KP", "IR", "SY"]
@@ -54,7 +53,7 @@ def generate_amount_threshold_anomalies(count=5):
 def generate_velocity_anomalies():
     print(f"\n--- Generating VELOCITY_CHECK anomaly ---")
     user_id = random.choice(USER_IDS)
-    # 7 транзакций подряд без паузы -> должно триггернуть velocity check (порог 5 за 10 минут)
+
     for _ in range(7):
         amount = round(random.uniform(20, 200), 2)
         country = random.choice(NORMAL_COUNTRIES)
@@ -82,7 +81,7 @@ def generate_duplicate_payment_anomalies(count=3):
         merchant = random.choice(MERCHANTS)
         country = random.choice(NORMAL_COUNTRIES)
 
-        # Отправляем одну и ту же транзакцию дважды подряд -> должно триггернуть duplicate check
+
         send_transaction(user_id, amount, country, merchant)
         time.sleep(0.05)
         send_transaction(user_id, amount, country, merchant)

@@ -40,7 +40,6 @@ class VelocityCheckRuleCheckerTest {
         User user = new User();
         user.setId(1L);
 
-        // Текущая транзакция, которая уже сохранена и имеет id=100
         Transaction currentTransaction = new Transaction();
         currentTransaction.setId(100L);
         currentTransaction.setUser(user);
@@ -48,7 +47,6 @@ class VelocityCheckRuleCheckerTest {
         FraudRule rule = new FraudRule();
         rule.setThreshold(new BigDecimal("5")); // максимум 5 транзакций
 
-        // Репозиторий возвращает 6 ДРУГИХ транзакций + саму текущую (id=100) — итого 7 записей
         List<Transaction> recentTransactions = new ArrayList<>(List.of(
                 createTransactionWithId(1L),
                 createTransactionWithId(2L),
@@ -81,7 +79,6 @@ class VelocityCheckRuleCheckerTest {
         FraudRule rule = new FraudRule();
         rule.setThreshold(new BigDecimal("5"));
 
-        // 2 других транзакции + сама текущая (id=100) — итого 3 записи, после исключения себя — 2
         List<Transaction> recentTransactions = new ArrayList<>(List.of(
                 createTransactionWithId(1L),
                 createTransactionWithId(2L),

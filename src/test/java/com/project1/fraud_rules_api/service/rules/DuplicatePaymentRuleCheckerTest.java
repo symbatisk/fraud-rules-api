@@ -42,7 +42,6 @@ class DuplicatePaymentRuleCheckerTest {
 
         FraudRule rule = new FraudRule();
 
-        // Репозиторий находит саму текущую (id=100) + одну настоящую дублирующую (id=50)
         Transaction realDuplicate = new Transaction();
         realDuplicate.setId(50L);
 
@@ -72,7 +71,6 @@ class DuplicatePaymentRuleCheckerTest {
 
         FraudRule rule = new FraudRule();
 
-        // Репозиторий находит ТОЛЬКО саму текущую транзакцию — значит дубликатов нет
         Transaction self = new Transaction();
         self.setId(100L);
 

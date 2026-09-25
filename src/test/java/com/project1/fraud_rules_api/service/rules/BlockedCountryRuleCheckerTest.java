@@ -14,9 +14,9 @@ class BlockedCountryRuleCheckerTest {
     void shouldReturnRiskScoreWhenCountryIsBlocked() {
         // given
         Transaction transaction = new Transaction();
-        transaction.setCountry("KP"); // страна из захардкоженного списка
+        transaction.setCountry("KP");
 
-        FraudRule rule = new FraudRule(); // не используется в логике, но нужен по сигнатуре
+        FraudRule rule = new FraudRule();
 
         // when
         int riskScore = checker.check(transaction, rule);
